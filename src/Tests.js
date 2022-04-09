@@ -29,15 +29,15 @@ export default function Tests() {
   })
 
   function TestBox(props) {
-    var color = "whitesmoke";
+    var color = "#121213";
     if (props.status === "blank") {
-      color = "whitesmoke";
+      color = "#121213";
     } else if (props.status === "error") {
-      color = "crimson";
+      color = "#3a3a3c";
     } else if (props.status === "wrong") {
-      color = "yellow";
+      color = "#b59f3b";
     } else if (props.status === "success"){
-      color = "green";
+      color = "#538d4e";
     } else {
       color = "blue";
     }
@@ -56,13 +56,57 @@ export default function Tests() {
   }
 
   return (
-    <div className="Tests">
-      <TestBox status= {testOne.status} num = {1}/>
-      <TestBox status= {testTwo.status} num={2}/>
-      <TestBox status= {testThree.status} num={3}/>
-      <TestBox status= {testFour.status} num={4}/>
-      <TestBox status= {testFive.status} num={5}/>
-      <TestBox status= {testSix.status} num={6}/>
+    <div>
+      <div className="Tests">
+        <TestBox status= {testOne.status} num = {1}/>
+        <TestBox status= {testTwo.status} num={2}/>
+        <TestBox status= {testThree.status} num={3}/>
+        <TestBox status= {testFour.status} num={4}/>
+        <TestBox status= {testFive.status} num={5}/>
+        <TestBox status= {testSix.status} num={6}/>
+      </div>
+        <div className="Tests">
+        <TestBox status= {testOne.status} num = {1}/>
+        <TestBox status= {testTwo.status} num={2}/>
+        <TestBox status= {testThree.status} num={3}/>
+        <TestBox status= {testFour.status} num={4}/>
+        <TestBox status= {testFive.status} num={5}/>
+        <TestBox status= {testSix.status} num={6}/>
+      </div>
+        <div className="Tests">
+        <TestBox status= {testOne.status} num = {1}/>
+        <TestBox status= {testTwo.status} num={2}/>
+        <TestBox status= {testThree.status} num={3}/>
+        <TestBox status= {testFour.status} num={4}/>
+        <TestBox status= {testFive.status} num={5}/>
+        <TestBox status= {testSix.status} num={6}/>
+      </div>
+        <div className="Tests">
+        <TestBox status= {testOne.status} num = {1}/>
+        <TestBox status= {testTwo.status} num={2}/>
+        <TestBox status= {testThree.status} num={3}/>
+        <TestBox status= {testFour.status} num={4}/>
+        <TestBox status= {testFive.status} num={5}/>
+        <TestBox status= {testSix.status} num={6}/>
+      </div>
+        <div className="Tests">
+        <TestBox status= {testOne.status} num = {1}/>
+        <TestBox status= {testTwo.status} num={2}/>
+        <TestBox status= {testThree.status} num={3}/>
+        <TestBox status= {testFour.status} num={4}/>
+        <TestBox status= {testFive.status} num={5}/>
+        <TestBox status= {testSix.status} num={6}/>
+      </div>
+        <div className="Tests">
+        <TestBox status= {testOne.status} num = {1}/>
+        <TestBox status= {testTwo.status} num={2}/>
+        <TestBox status= {testThree.status} num={3}/>
+        <TestBox status= {testFour.status} num={4}/>
+        <TestBox status= {testFive.status} num={5}/>
+        <TestBox status= {testSix.status} num={6}/>
+      </div>
     </div>
+    
+
   )
 }
