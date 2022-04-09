@@ -33,6 +33,8 @@ export default function Test_Textbox(props) {
 
   const [codeText, setCodeText] = React.useState("");
 
+  const [disable, setDisable] = React.useState(false);
+
     function openResponse(respname) {
         var x = Array.from(document.getElementsByClassName("resp") as HTMLCollectionOf<HTMLElement>);
         for (var i = 0; i < x.length; i++) {
@@ -66,6 +68,9 @@ export default function Test_Textbox(props) {
                     x[i].style.backgroundColor = "#121213";
                     break;
             }
+        }
+        if (respNum >= 5) {
+          setDisable(true);
         }
         
     }
@@ -134,7 +139,7 @@ export default function Test_Textbox(props) {
             </div> */}
             <div id="resp1" className="resp" style={{display: "block"}}>
                 <textarea className="resp1 box" rows={20} cols={80} 
-                onChange={handleChange} value={codeText} onKeyDown={e => {
+                onChange={handleChange} value={codeText} disabled={disable} onKeyDown={e => {
                                                                                 if ( e.key === 'Tab' && !e.shiftKey ) {
                                                                                 document.execCommand('insertText', false, "    ");
                                                                                 e.preventDefault();
@@ -142,7 +147,7 @@ export default function Test_Textbox(props) {
                                                                                 }}}></textarea>
             </div>
             
-            <button className='submit' onClick={() => sendCode(props.responseCount)}>SUBMIT</button>
+            <button className='submit' disabled={disable} onClick={() => sendCode(props.responseCount)}>SUBMIT</button>
                 
 
             
