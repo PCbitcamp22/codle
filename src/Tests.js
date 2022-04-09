@@ -50,7 +50,7 @@ export default function Tests() {
       <div className="TestBox" 
         style = {styles}
       >
-        {props.num}
+        {/* {props.num} */}
       </div>
     )
   }
