@@ -2,7 +2,7 @@ import './App.css';
 import './Textbox.css';
 import { useState } from "react";
 
-function Textbox() {
+function Textbox(props) {
 
     const [codeText, setCodeText] = useState("");
 
@@ -16,8 +16,10 @@ function Textbox() {
 
     function sendCode(respNum) {
         console.log(codeText); //Send this to API
-        setCodeText("");
-        this.props.fn();
+        props.fn();
+        console.log(respNum);
+        var result = [0,1,-1,1,1,1]
+        
     }
 
     function handleChange(event) {
@@ -29,29 +31,29 @@ function Textbox() {
     return (
         <div className="Textbox">
         
-            <form className="form">
-                {/* <div className="problembar">
-                    <button onClick={() => openResponse('Response 1')}>Response 1</button>
-                    <button onClick={() => openResponse('Response 2')}>Response 2</button>
-                    <button onClick={() => openResponse('Response 3')}>Response 3</button>
-                    <button onClick={() => openResponse('Response 4')}>Response 4</button>
-                    <button onClick={() => openResponse('Response 5')}>Response 5</button>
-                    <button onClick={() => openResponse('Response 6')}>Response 6</button>
-                </div> */}
-                <div id="resp1" className="resp" style={{display: "block"}}>
-                    <textarea className="resp1 box" rows={20} cols={80} 
-                    onChange={handleChange} value={codeText} onKeyDown={e => {
-                                                                                    if ( e.key === 'Tab' && !e.shiftKey ) {
-                                                                                    document.execCommand('insertText', false, "    ");
-                                                                                    e.preventDefault();
-                                                                                    return false;
-                                                                                    }}}></textarea>
-                </div>
-                
-                <button className='submit' onClick={() => sendCode(1)}>SUBMIT</button>
+            
+            {/* <div className="problembar">
+                <button onClick={() => openResponse('Response 1')}>Response 1</button>
+                <button onClick={() => openResponse('Response 2')}>Response 2</button>
+                <button onClick={() => openResponse('Response 3')}>Response 3</button>
+                <button onClick={() => openResponse('Response 4')}>Response 4</button>
+                <button onClick={() => openResponse('Response 5')}>Response 5</button>
+                <button onClick={() => openResponse('Response 6')}>Response 6</button>
+            </div> */}
+            <div id="resp1" className="resp" style={{display: "block"}}>
+                <textarea className="resp1 box" rows={20} cols={80} 
+                onChange={handleChange} value={codeText} onKeyDown={e => {
+                                                                                if ( e.key === 'Tab' && !e.shiftKey ) {
+                                                                                document.execCommand('insertText', false, "    ");
+                                                                                e.preventDefault();
+                                                                                return false;
+                                                                                }}}></textarea>
+            </div>
+            
+            <button className='submit' onClick={() => sendCode(1+props.responseCount)}>SUBMIT</button>
                 
 
-            </form>
+            
         </div>
     );
 }
