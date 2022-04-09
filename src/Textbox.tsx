@@ -1,7 +1,10 @@
 import './App.css';
 import './Textbox.css';
+import { useState } from "react";
 
 function Textbox() {
+
+    const [codeText, setCodeText] = useState("");
 
     function openResponse(respname) {
         var x = Array.from(document.getElementsByClassName("resp") as HTMLCollectionOf<HTMLElement>);
@@ -12,17 +15,19 @@ function Textbox() {
     }
 
     function sendCode(respNum) {
-        var x = Array.from(document.getElementsByClassName("resp") as HTMLCollectionOf<HTMLElement>);
-        console.log(x[respNum].textContent); //Send this to API
-        x[respNum].textContent = "";
+        console.log(codeText); //Send this to API
+        setCodeText("");
         this.props.fn();
     }
 
+    function handleChange(event) {
+        const {value} = event.target
+        setCodeText(value)
+    }
     
 
     return (
         <div className="Textbox">
-            {"this.props.responseCount"}
         
             <form className="form">
                 {/* <div className="problembar">
@@ -34,24 +39,16 @@ function Textbox() {
                     <button onClick={() => openResponse('Response 6')}>Response 6</button>
                 </div> */}
                 <div id="resp1" className="resp" style={{display: "block"}}>
-                    <textarea className="resp1 box" rows={20} cols={80}></textarea>
+                    <textarea className="resp1 box" rows={20} cols={80} 
+                    onChange={handleChange} value={codeText} onKeyDown={e => {
+                                                                                    if ( e.key === 'Tab' && !e.shiftKey ) {
+                                                                                    document.execCommand('insertText', false, "    ");
+                                                                                    e.preventDefault();
+                                                                                    return false;
+                                                                                    }}}></textarea>
                 </div>
-                {/* <div id="resp2" className="resp" style={{display: "none"}}>
-                    <textarea className="resp2 box"></textarea>
-                </div>
-                <div id="resp3" className="resp" style={{display: "none"}}>
-                    <textarea className="resp3 box"></textarea>
-                </div>
-                <div id="resp4" className="resp" style={{display: "none"}}>
-                    <textarea className="resp4 box"></textarea>
-                </div>
-                <div id="resp5" className="resp" style={{display: "none"}}>
-                    <textarea className="resp5 box"></textarea>
-                </div>
-                <div id="resp6" className="resp" style={{display: "none"}}>
-                    <textarea className="resp6 box"></textarea>
-                </div> */}
-                <button className='submit' onClick={() => sendCode(this.props.responseCount)}>Submit</button>
+                
+                <button className='submit' onClick={() => sendCode(1)}>SUBMIT</button>
                 
 
             </form>
