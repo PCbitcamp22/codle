@@ -24,7 +24,7 @@ const Modal = ({ setIsOpen, respNum }) => {
   const [soln, setSoln] = React.useState("");
 
   function isWinner() {
-    if (respNum >= 5) {
+    if (respNum >= 7) {
       return false;
     }
     else {

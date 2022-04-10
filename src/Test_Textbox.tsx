@@ -89,6 +89,12 @@ export default function Test_Textbox(props) {
           }
           if (respNum >= 5 || amountRight == 5) {
             setDisable(true);
+            if (amountRight != 5) {
+              props.fn()
+              props.fn()
+              props.fn()
+              props.fn()
+            }
             setIsOpen(true);
           }
         });
