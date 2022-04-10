@@ -37,6 +37,8 @@ export default function Test_Textbox(props) {
 
   const [disable, setDisable] = React.useState(false);
 
+  const [winner, setWinner] = React.useState(true);
+
     function openResponse(respname) {
         var x = Array.from(document.getElementsByClassName("resp") as HTMLCollectionOf<HTMLElement>);
         for (var i = 0; i < x.length; i++) {
@@ -90,10 +92,7 @@ export default function Test_Textbox(props) {
           if (respNum >= 5 || amountRight == 5) {
             setDisable(true);
             if (amountRight != 5) {
-              props.fn()
-              props.fn()
-              props.fn()
-              props.fn()
+              setWinner(false);
             }
             setIsOpen(true);
           }
@@ -107,7 +106,7 @@ export default function Test_Textbox(props) {
 
   return (
     <div>
-      {isOpen && <Winner setIsOpen={setIsOpen} respNum={props.responseCount}/>}
+      {isOpen && <Winner setIsOpen={setIsOpen} respNum={props.responseCount} winner={winner}/>}
       <div className="TestWrapper">
         <div className="Tests">
             <div className="TestBox"/>

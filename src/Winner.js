@@ -19,17 +19,12 @@ import "./Modal.css";
 
 // A new WORDLE will be available each day!
 
-const Modal = ({ setIsOpen, respNum }) => {
+const Modal = ({ setIsOpen, respNum, winner }) => {
 
   const [soln, setSoln] = React.useState("");
 
   function isWinner() {
-    if (respNum >= 7) {
-      return false;
-    }
-    else {
-      return true;
-    }
+    return winner;
   }
   function getSolution() {
     var requestOptions = {
