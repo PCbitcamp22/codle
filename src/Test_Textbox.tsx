@@ -52,7 +52,7 @@ export default function Test_Textbox(props) {
         var requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({"Code-Text":codeText}),
+          body: JSON.stringify({"Code-Text":codeText,"Number":props.probNum}),
           // mode: 'no-cors' as RequestMode
         };
         let result = fetch('https://codlebackend-4noodlwraa-ue.a.run.app/api', requestOptions)

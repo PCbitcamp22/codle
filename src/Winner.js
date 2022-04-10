@@ -46,13 +46,14 @@ const Modal = ({ setIsOpen, respNum }) => {
       <div className="centered">
         <div className="modal">
           <div className="modalContent">
-            {isWinner() ? "Good job! You solved the problem in "+respNum+" tr"+(respNum===1?"y":"ies")+"!" : "You are a failure"}
+            {isWinner() ? "Good job! You solved the problem in "+respNum+" tr"+(respNum===1?"y":"ies")+"!" : "Sorry, you did not solve the problem in the allotted guesses."}
 
             
             <br/><br/>
 
+            Thank you for trying this demo! If you wish to play again on a random problem, refresh the page!
 
-            A new CODLE will be available tomorrow!
+            {/* A new CODLE will be available tomorrow! */}
 
             {/* {"The recommended solution is: "}<br/><br/>{(soln ? soln : getSolution())} */}
           </div>

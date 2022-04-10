@@ -11,6 +11,8 @@ function App() {
     const [problem, setProblem] = useState("");
     const [responseCount, setResponseCount] = useState(0);
 
+    const [probNum, setProbNum] = useState((Math.random()*5) | 0);
+
     function updateCount() {
         setResponseCount(responseCount+1);
     }
@@ -18,7 +20,8 @@ function App() {
         var requestOptions = {
             method: 'GET',
         };
-        let p = fetch('https://codlebackend-4noodlwraa-ue.a.run.app/problem', requestOptions)
+        console.log(probNum);
+        let p = fetch('https://codlebackend-4noodlwraa-ue.a.run.app/problem/'+probNum, requestOptions)
             .then(response => response.text())
             .then(setProblem)
         return problem.toString();
@@ -30,7 +33,7 @@ function App() {
             <h1>CODLE</h1>
             <button className="infoButton" onClick={() => setIsOpen(true)}>?</button>
             <p>{problem ? problem : getProblem()}</p>
-            <Test_Textbox fn={updateCount} responseCount={responseCount}/>
+            <Test_Textbox fn={updateCount} responseCount={responseCount} probNum={probNum}/>
             {/* <Tests/>
             <Textbox fn={updateCount} responseCount={responseCount}/> */}
         </div>
