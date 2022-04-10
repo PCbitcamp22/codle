@@ -1,4 +1,5 @@
 import React from "react"
+import Winner from './Winner';
 import './Test.css';
 import './Textbox.css';
 
@@ -28,6 +29,7 @@ export default function Test_Textbox(props) {
   const [testSix, setTestSix] = React.useState({
     status: "blank"
   })
+  const [isOpen, setIsOpen] = React.useState(false);
 
   
 
@@ -46,33 +48,50 @@ export default function Test_Textbox(props) {
     function sendCode(respNum) {
         console.log(codeText); //Send this to API
         props.fn();
-        console.log(respNum);
-        var result = [0,1,-1,1,1]
-
-        var x = Array.from(document.getElementsByClassName("TestBox") as HTMLCollectionOf<HTMLElement>);
-        console.log(x.length + " things found")
-        for (var i = respNum*5; i < respNum*5+5; i++) {
-            var ele = x[i];
-            console.log(i);
-            switch(result[i-5*respNum]) {
-                case -1:
-                    x[i].style.backgroundColor = "#3a3a3c";
-                    break;
-                case 0:
-                    x[i].style.backgroundColor = "#b59f3b";
-                    break;
-                case 1:
-                    x[i].style.backgroundColor = "#538d4e";
-                    break;
-                default:
-                    x[i].style.backgroundColor = "#121213";
-                    break;
-            }
-        }
-        if (respNum >= 5) {
-          setDisable(true);
-        }
         
+        var requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({"Code-Text":codeText}),
+          // mode: 'no-cors' as RequestMode
+        };
+        let result = fetch('https://codlebackend-4noodlwraa-ue.a.run.app/api', requestOptions)
+            .then(response => response.json()).then(result => {
+        //var result = [0,1,-1,1,1]
+
+          console.log(result)
+          console.log(typeof(result))
+
+          const keys = Object.keys(result);
+          console.log(keys);
+
+          var x = Array.from(document.getElementsByClassName("TestBox") as HTMLCollectionOf<HTMLElement>);
+          var amountRight = 0;
+          for (var i = respNum*5; i < respNum*5+5; i++) {
+              var ele = x[i];
+              switch(result[keys[i-5*respNum]]) {
+                  case 3:
+                  case -3:
+                  case -1:
+                      x[i].style.backgroundColor = "#3a3a3c";
+                      break;
+                  case 0:
+                      x[i].style.backgroundColor = "#b59f3b";
+                      break;
+                  case 1:
+                      x[i].style.backgroundColor = "#538d4e";
+                      amountRight++;
+                      break;
+                  default:
+                      x[i].style.backgroundColor = "#121213";
+                      break;
+              }
+          }
+          if (respNum >= 5 || amountRight == 5) {
+            setDisable(true);
+            setIsOpen(true);
+          }
+        });
     }
 
     function handleChange(event) {
@@ -82,6 +101,7 @@ export default function Test_Textbox(props) {
 
   return (
     <div>
+      {isOpen && <Winner setIsOpen={setIsOpen} respNum={props.responseCount}/>}
       <div className="TestWrapper">
         <div className="Tests">
             <div className="TestBox"/>
@@ -138,7 +158,7 @@ export default function Test_Textbox(props) {
                 <button onClick={() => openResponse('Response 6')}>Response 6</button>
             </div> */}
             <div id="resp1" className="resp" style={{display: "block"}}>
-                <textarea className="resp1 box" rows={20} cols={80} 
+                <textarea className="resp1 box" rows={18} cols={80} 
                 onChange={handleChange} value={codeText} disabled={disable} onKeyDown={e => {
                                                                                 if ( e.key === 'Tab' && !e.shiftKey ) {
                                                                                 document.execCommand('insertText', false, "    ");

@@ -9,11 +9,28 @@
   color: white;
   min-height: 100vh;
 }
+h1 {
+  margin: 5px;
+}
+
 
 p {
 
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+.infoButton {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 2px solid white;
+  background-color: #121213;
+  color: white;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: large;
 }
 
 .App-logo {

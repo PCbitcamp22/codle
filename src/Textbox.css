@@ -20,8 +20,13 @@
     width: 100px;
     height: 30px;
     font-size: medium;
+    margin-top: 15px;
 }
 
 .submit:hover {
     background-color: #696a6b;
+}
+
+.Textbox {
+    margin-top: 20px;
 }

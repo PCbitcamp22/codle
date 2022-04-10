@@ -4,20 +4,32 @@ import Textbox from "./Textbox.tsx";
 import Tests from "./Tests";
 import { useState } from "react";
 import Test_Textbox from './Test_Textbox.tsx';
+import Modal from './Modal.tsx';
 
 function App() {
-    const [problemNum, setProblemNum] = useState(0);
+    const [isOpen, setIsOpen] = useState(true);
+    const [problem, setProblem] = useState("");
     const [responseCount, setResponseCount] = useState(0);
 
     function updateCount() {
         setResponseCount(responseCount+1);
     }
+    function getProblem() {
+        var requestOptions = {
+            method: 'GET',
+        };
+        let p = fetch('https://codlebackend-4noodlwraa-ue.a.run.app/problem', requestOptions)
+            .then(response => response.text())
+            .then(setProblem)
+        return problem.toString();
+    }
 
     return (
         <div className="App">
+            {isOpen && <Modal setIsOpen={setIsOpen} />}
             <h1>CODLE</h1>
-            <p><b><u>Problem 1:</u></b> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut in odit sit inventore quidem omnis molestiae iste earum. Error facilis nihil aspernatur consectetur blanditiis in ad culpa quos voluptatibus animi.</p>
-            
+            <button className="infoButton" onClick={() => setIsOpen(true)}>?</button>
+            <p>{problem ? problem : getProblem()}</p>
             <Test_Textbox fn={updateCount} responseCount={responseCount}/>
             {/* <Tests/>
             <Textbox fn={updateCount} responseCount={responseCount}/> */}
